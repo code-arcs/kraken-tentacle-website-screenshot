@@ -49,9 +49,7 @@ function fromCache(url, options) {
                     file = file.replace('./cache/', '');
                     return +file.split('.').reverse()[1];
                 })
-                .filter(ts => {
-                    return ts > (Math.floor(Date.now() / 1000) - options.cache.maxAge)
-                });
+                .filter(ts => ts > (Math.floor(Date.now() / 1000) - options.cache.maxAge));
 
             if (validFiles.length > 0) {
                 deferred.resolve(fs.createReadStream(`./cache/${hashUrl(url)}.${validFiles.pop()}.png`));
