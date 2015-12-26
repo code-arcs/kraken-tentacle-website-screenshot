@@ -97,7 +97,7 @@ function fromCache(url, options) {
 
             if (validFiles.length > 0) {
                 log.info('Found a cached version.');
-                deferred.resolve(fs.createReadStream(`${getCacheDir()}/${hashUrl(url)}.${validFiles.pop()}.png`));
+                deferred.resolve(`${getCacheDir()}/${hashUrl(url)}.${validFiles.pop()}.png`);
             } else {
                 log.info('Nothing found in cache.');
                 deferred.reject();
@@ -197,12 +197,14 @@ function captureNew(url, path, options) {
 function resizeScreenshot(path, options) {
     var log = logger('resizeScreenshot');
     log.info('Attempt to resize screenshot.');
+    log.info('path:', path);
 
     var deferred = q.defer();
     var resizedImageName = [path, options.image.width + 'x' + options.image.height, 'png'].join('.');
+    var resizeStart = Date.now();
 
     if (options.image.width === 1280 && options.image.height === 1280) {
-        log.info('Screenshot has not to be resized. Delivering original image.');
+        log.info('Screenshot has not to been resized. Delivering original image.');
         deferred.resolve(fs.createReadStream(path));
     } else {
         log.info('Screenshot has to be resized.');
@@ -213,7 +215,7 @@ function resizeScreenshot(path, options) {
                     log.info('Error while resizing image. Delivering original image.', err);
                     deferred.resolve(fs.createReadStream(path));
                 }
-                log.info('Resizing done.');
+                log.info('Resizing done.', Math.floor((Date.now() - resizeStart) / 1000)+'s');
                 deferred.resolve(fs.createReadStream(resizedImageName));
             });
     }
