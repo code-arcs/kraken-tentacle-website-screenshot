@@ -3,6 +3,7 @@ var fs = require('fs');
 var q = require('q');
 var glob = require('glob');
 var gm = require('gm');
+var Config = require('../config');
 
 module.exports = {
     getScreenshot: getScreenshot,
@@ -40,17 +41,17 @@ function getScreenshot(url, userOptions) {
     path = `${getCacheDir()}/${hashUrl(url)}.${Math.round(Date.now() / 1000)}.png`;
     options = {
         cache: {
-            disable: userOptions.disableCache || false,
-            maxAge: userOptions.cacheMaxAge || 60 * 60 * 24 // In seconds
+            disable: userOptions.nocache ? true : false,
+            maxAge: userOptions.cachemaxage || 60 * 60 * 24 // In seconds
         },
         image: {
-            width: userOptions.imageWidth || 1280,
-            height: userOptions.imageHeight || 1280
+            width: +userOptions.width || 1280,
+            height: +userOptions.height || 1280
         },
         phantom: {
             screenSize: {
-                width: 1280,
-                height: 1280
+                width: (+userOptions.width > 1280) ? +userOptions.width : 1280,
+                height: (+userOptions.height > 1280) ? +userOptions.height : 1280
             },
             renderDelay: 1500,
             timeout: 30 * 1000
@@ -127,7 +128,7 @@ function normalizeUrl(url) {
  * Returns the cache directory.
  */
 function getCacheDir() {
-    var cacheDir = [__dirname, '..', 'cache'].join("/");
+    var cacheDir = [Config.cache, 'screenshots'].join('/');
     return fs.realpathSync(cacheDir);
 }
 

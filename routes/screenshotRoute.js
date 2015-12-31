@@ -3,9 +3,9 @@ var router = express.Router();
 
 var screenshotService = require('../services/screenshotService');
 
-router.post('/screenshot', function (req, res, next) {
-    if(req.body.url) {
-        screenshotService.getScreenshot(req.body.url, req.body)
+router.get('/screenshot', function (req, res, next) {
+    if(req.query.url) {
+        screenshotService.getScreenshot(req.query.url, req.query)
             .then(data => {
                 res.writeHead(200, {'Content-Type': 'image/png'});
                 data.pipe(res);
