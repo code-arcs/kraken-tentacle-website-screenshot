@@ -1,6 +1,5 @@
 var phantom = require('phantom');
 var q = require('q');
-var jsdom = require("jsdom");
 var Config = require('../config');
 var exec = require('child_process').exec;
 var snapRepository = require('../repositories/snapRepository');
