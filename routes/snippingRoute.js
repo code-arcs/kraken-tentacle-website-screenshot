@@ -6,8 +6,11 @@ var snippingService = require('../services/snippingService');
 
 router.post('/snip', function (req, res, next) {
     if(req.body.url) {
-        snippingService.createSnap(req.body.url);
-        res.send('asd');
+        snippingService.createSnap(req.body.url)
+            .then(resp => res.send(resp))
+            .catch(err => {
+                res.status(500).send("An Error occured.")
+            });
     } else {
         res.status(400);
         res.send('No url specified!');
