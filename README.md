@@ -1,4 +1,6 @@
-# Website Kraken Tentacle Service 
+# Website Kraken Tentacle Service
+[![Build Status](https://travis-ci.org/code-arcs/kraken-tentacle-website-screenshot.svg?branch=master)](https://travis-ci.org/code-arcs/kraken-tentacle-website-screenshot)
+ 
 This service is capable of taking screenshots of any website one has free access to.
 
 ## Routes
