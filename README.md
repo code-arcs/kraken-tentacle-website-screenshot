@@ -15,7 +15,20 @@ _Body_
 ```
 
 ## NPM commands
-`npm start` starts the service on port 3000.  
+`npm start` starts the service on port 3000.
+
+
+# Tests
+
+## Unit tests
+`npm test`
+
+## Integration tests
+Run ArangoDB Docker Container:  
+`docker run -p 8529:8529 -d arangodb`
+ 
+Run integration tests  
+`npm run integration-test`
 
 # License
 Copyright 2016 CodeArcs.de
