@@ -9,7 +9,7 @@ module.exports = {
 };
 
 function getExistingSnapEntry(url) {
-    return snapRepository.findByUrl(url);
+    return snapRepository.findOneByUrl(url);
 }
 
 function createSnap(url) {
@@ -22,7 +22,7 @@ function createSnap(url) {
             if (stderr instanceof Error && stderr.code != 8) {
                 deferred.reject("Failed to snip website.");
             } else {
-                snapRepository.findByUrl(url)
+                snapRepository.findOneByUrl(url)
                     .then(docs => docs.length > 0 ? docs[0] : undefined)
                     .then(doc => {
                         if(doc) {

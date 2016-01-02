@@ -22,7 +22,7 @@ describe('SnippingService', function () {
 
     it('snips non-cached website.', function (done) {
         snippingService.__set__('snapRepository', {
-            findByUrl: function () {
+            findOneByUrl: function () {
                 return resolve([]);
             },
             save: mockSave
@@ -45,7 +45,7 @@ describe('SnippingService', function () {
 
     it('snips cached website.', function (done) {
         snippingService.__set__('snapRepository', {
-            findByUrl: function (url) {
+            findOneByUrl: function (url) {
                 return resolve([{
                     _id: 123,
                     created: 1337,

@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "test": "export ENVIRONMENT=development && mocha --recursive ./test"
+    "test": "export ENVIRONMENT=development && mocha --reporter spec ./test/**/*.spec.js",
+    "integration-test": "export ENVIRONMENT=development && mocha --reporter spec ./test/**/*.spec.it.js"
   },
   "dependencies": {
     "aqb": "^2.1.0",
