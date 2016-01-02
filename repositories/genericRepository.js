@@ -1,11 +1,6 @@
 'use strict';
-var arangojs = require('arangojs');
-var qb = require('aqb');
 
-var Config = require('../config');
-var db = new arangojs.Database({
-    url: `http://${Config.database.url}:${Config.database.port}`
-});
+var db = require('../services/databaseService');
 
 module.exports = function(name) {
     var _collection = db.collection(name);
@@ -46,7 +41,7 @@ module.exports = function(name) {
     }
 
     function removeAll() {
-        return _collection.drop();
+        return _collection.truncate();
     }
 
     function exists(id) {
