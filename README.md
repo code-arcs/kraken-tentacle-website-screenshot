@@ -1,5 +1,7 @@
 # Website Kraken Tentacle Service
-[![Build Status](https://travis-ci.org/code-arcs/kraken-tentacle-website-screenshot.svg?branch=master)](https://travis-ci.org/code-arcs/kraken-tentacle-website-screenshot)
+[![Build Status](https://travis-ci.org/code-arcs/kraken-website-screenshot-tentacle.svg?branch=master)](https://travis-ci.org/code-arcs/kraken-website-screenshot-tentacle)
+[![Dependency Status](https://david-dm.org/code-arcs/kraken-website-screenshot-tentacle.svg)](https://david-dm.org/code-arcs/kraken-website-screenshot-tentacle)
+[![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
  
 This service is capable of taking screenshots of any website one has free access to.
 
